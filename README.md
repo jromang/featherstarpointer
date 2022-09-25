@@ -10,12 +10,12 @@ Components :
 - [Adafruit BNO055 Absolute Orientation Sensor](https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor)
 - [STEMMA QT / Qwiic JST SH 4-Pin Cable - 50mm Long](https://www.adafruit.com/product/4399)
 - [Lithium Ion Polymer Battery](https://www.adafruit.com/product/3898)
-- 3D printed case and holder (You will find ready to print STL files in this repo)
+- 3D printed case and holder (you will find [ready to print STL](https://github.com/jromang/featherstarpointer/tree/main/stl) files in this repo)
 - A smartphone (Android/IOS) with the [SkySafari Pro](https://skysafariastronomy.com/skysafari-7-professional-astronomy-telescope-control-software-for-android.html) application
 
 How to build
 - There is not soldering involved, just connect the Featherboard, the sensor, and the battery with the cable connectors
-- You will need to flash the binary firmware (in this repo) to the Featherboard)
+- You will need to flash the [binary firmware](https://github.com/jromang/featherstarpointer/tree/main/sketch/fsp)  to the Featherboard)
 - You have to glue the 3D printed base to the 3d printed holder
 
 How to use :
