@@ -29,4 +29,6 @@ Pictures :
  
  ![Inside](https://github.com/jromang/featherstarpointer/raw/main/media/inside.jpeg)
  
+ ![3D Model](https://github.com/jromang/featherstarpointer/raw/main/media/openscad_model.png)
+ 
  ![SkySafari](https://www.webastro.net/uploads/monthly_2019_08/Screenshot_2019-08-28-13-16-45-940_com.simulationcurriculum.skysafari5pro.png.d8d3513f8f01f341cc7b48845134fe49.png)
