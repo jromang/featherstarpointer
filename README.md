@@ -15,7 +15,7 @@ Components :
 
 How to build
 - There is not soldering involved, just connect the Featherboard, the sensor, and the battery with the cable connectors
-- You will need to flash the [binary firmware](https://github.com/jromang/featherstarpointer/tree/main/sketch/fsp)  to the Featherboard)
+- You will need to flash the [binary firmware](https://github.com/jromang/featherstarpointer/tree/main/sketch/fsp)  to the Featherboard
 - You have to glue the 3D printed base to the 3d printed holder
 
 How to use :
