@@ -20,7 +20,7 @@ How to build
 
 How to use :
 - Follow the [calibration procedure](https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor/device-calibration) at startup : the white LED will turn green when the calibration is finished.
-- Add the FSP as a 'basic encoder system' in skysafari, choose 'push-to  Alt-az', and connect using bluetooth. Finally set the encoder settingd to +8192 (both fields).
+- Add the FSP as a 'basic encoder system' in skysafari, choose 'push-to  Alt-az', and connect using bluetooth. Finally set the encoder settings to +8192 (both fields).
 - Enjoy !
 
 Pictures :
