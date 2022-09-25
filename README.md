@@ -1,5 +1,4 @@
 # Feather Star Pointer
-Feather Star Pointer
 
 :warning: This is still very experimental :warning:
 
