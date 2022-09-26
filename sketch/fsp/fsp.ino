@@ -59,6 +59,7 @@ int mod(int a, int b)
 void calibrate()
 {
   Serial.println("Calibration start");
+  SerialBT.println("Calibration start");
   /* Get the four calibration values (0..3) */
   /* Any sensor data reporting 0 should be ignored, */
   /* 3 means 'fully calibrated" */
@@ -85,10 +86,20 @@ void calibrate()
       Serial.print(accel, DEC);
       Serial.print(" M:");
       Serial.println(mag, DEC);
+
+      SerialBT.print("Sys:");
+      SerialBT.print(system, DEC);
+      SerialBT.print(" G:");
+      SerialBT.print(gyro, DEC);
+      SerialBT.print(" A:");
+      SerialBT.print(accel, DEC);
+      SerialBT.print(" M:");
+      SerialBT.println(mag, DEC);
     }
     delay(200);
   }
   Serial.println("Calibration OK");
+  SerialBT.println("Calibration OK");
 }
 
 
@@ -135,9 +146,8 @@ void setup(void)
   bno.setExtCrystalUse(true);
 
   delay(1000);
-  calibrate();
-
   SerialBT.begin("Feather Star Pointer"); //Bluetooth device name
+  calibrate();
 
   pixel.fill(0x00FF00);
   pixel.show();
@@ -145,7 +155,7 @@ void setup(void)
 
 
 void loop(void) 
-{
+{ 
   if (SerialBT.available()) {
     char command=SerialBT.read();
     char response[30];
@@ -156,6 +166,7 @@ void loop(void)
     {
       sensors_event_t event; 
       bno.getEvent(&event);
+      
       int az=(int)((event.orientation.x)*8192.0/360.0);
       int alt=(int)((event.orientation.y)*8192.0/360.0);
       az=mod(az,8192)-4096;
@@ -167,7 +178,7 @@ void loop(void)
       Serial.println(event.orientation.x);
       Serial.println(event.orientation.y);
       SerialBT.println(response);
-      delay(100);
+      
     }
     if(command=='H')
     {
@@ -177,4 +188,6 @@ void loop(void)
       SerialBT.println(response);
     }
   }
+
+  delay(110);
 }
