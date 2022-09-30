@@ -21,6 +21,7 @@
 #include <Adafruit_BNO055.h>
 #include <Adafruit_NeoPixel.h>
 #include <BluetoothSerial.h>
+#include <SimpleTimer.h>
 
 #if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
 #error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
@@ -30,9 +31,13 @@
 #error Serial Bluetooth not available or not enabled. It is only available for the ESP32 chip.
 #endif
 
+#define VBATPIN A13
+
 Adafruit_BNO055 bno = Adafruit_BNO055(55);
 Adafruit_NeoPixel pixel(1, PIN_NEOPIXEL, NEO_GRB + NEO_KHZ800);
 BluetoothSerial SerialBT;
+
+SimpleTimer batteryTimer(60000);
 
 // Modulo working with negative numbers
 int mod(int a, int b)
@@ -102,6 +107,19 @@ void calibrate()
   SerialBT.println("Calibration OK");
 }
 
+void displayBatteryCharge()
+{
+      float measuredvbat = analogRead(VBATPIN);
+      measuredvbat *= 2;    // we divided by 2, so multiply back
+      //measuredvbat *= 3.3;  // Multiply by 3.3V, our reference voltage
+      measuredvbat /= 1024; // convert to voltage
+      Serial.print("VBat: " ); Serial.println(measuredvbat);
+      if(measuredvbat>3.3)
+        pixel.fill(0x00FF00); //Green
+      else
+        pixel.fill(0xFFA500); //Orange
+      pixel.show();
+}
 
 void setup(void) 
 {
@@ -144,13 +162,10 @@ void setup(void)
 
   delay(1000);
   bno.setExtCrystalUse(true);
-
   delay(1000);
   SerialBT.begin("Feather Star Pointer"); //Bluetooth device name
   calibrate();
-
-  pixel.fill(0x00FF00);
-  pixel.show();
+  displayBatteryCharge();
 }
 
 
@@ -187,7 +202,21 @@ void loop(void)
       Serial.print(response);
       SerialBT.println(response);
     }
+    if(command=='B')
+    {
+      float measuredvbat = analogRead(VBATPIN);
+      measuredvbat *= 2;    // we divided by 2, so multiply back
+      //measuredvbat *= 3.3;  // Multiply by 3.3V, our reference voltage
+      measuredvbat /= 1024; // convert to voltage
+      Serial.print("VBat: " ); Serial.println(measuredvbat);
+      SerialBT.print("VBat: " ); SerialBT.println(measuredvbat);
+    }
   }
 
-  delay(110);
+  if(batteryTimer.isReady()) {
+    displayBatteryCharge();
+    batteryTimer.reset();
+  }
+
+  delay(20);
 }
