@@ -43,7 +43,7 @@ cube([18.5,39,4], center=true);
 }
 
 //holder
-holder_margin=0.2;
+holder_margin=0.4;
 if(printHolder)
 translate([90,110,39.4/2])
 rotate([90,0,0])
