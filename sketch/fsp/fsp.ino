@@ -19,7 +19,7 @@
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BNO055.h>
-#include <Adafruit_NeoPixel.h>
+#include <WS2812FX.h>
 #include <BluetoothSerial.h>
 #include <SimpleTimer.h>
 
@@ -34,7 +34,7 @@
 #define VBATPIN A13
 
 Adafruit_BNO055 bno = Adafruit_BNO055(55);
-Adafruit_NeoPixel pixel(1, PIN_NEOPIXEL, NEO_GRB + NEO_KHZ800);
+WS2812FX ws2812fx = WS2812FX(1, PIN_NEOPIXEL, NEO_GRB + NEO_KHZ800);
 BluetoothSerial SerialBT;
 
 SimpleTimer batteryTimer(60000);
@@ -70,18 +70,15 @@ void calibrate()
   /* 3 means 'fully calibrated" */
   uint8_t system, gyro, accel, mag;
   system = gyro = accel = mag = 0;
-  
-  pixel.setPixelColor(0, 15, 15, 15);
-  pixel.show();
+
+  ws2812fx.setColor(GRAY);
+  ws2812fx.service();
 
   while(system!=3 || gyro!= 3 || accel!=3 || mag!=3)
   {
     bno.getCalibration(&system, &gyro, &accel, &mag);
     if(system)
     {
-      pixel.setPixelColor(0,15+gyro*3, 15+accel*3, 15+mag*3);
-      pixel.show();
-
       /* Display the individual values */
       Serial.print("Sys:");
       Serial.print(system, DEC);
@@ -114,11 +111,11 @@ void displayBatteryCharge()
       //measuredvbat *= 3.3;  // Multiply by 3.3V, our reference voltage
       measuredvbat /= 1024; // convert to voltage
       Serial.print("VBat: " ); Serial.println(measuredvbat);
+      ws2812fx.setColor(RED);
       if(measuredvbat>3.3)
-        pixel.fill(0x00FF00); //Green
+       ws2812fx.setMode(FX_MODE_STATIC);
       else
-        pixel.fill(0xFFA500); //Orange
-      pixel.show();
+       ws2812fx.setMode(FX_MODE_BLINK);     
 }
 
 void setup(void) 
@@ -157,8 +154,13 @@ void setup(void)
     while(1);
   }
 
-  pixel.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
-  pixel.setBrightness(50); // not so bright
+  ws2812fx.init();
+  ws2812fx.setBrightness(32);
+  ws2812fx.setSpeed(1000);
+  ws2812fx.setColor(BLUE);
+  ws2812fx.setMode(FX_MODE_STATIC);
+  ws2812fx.start();
+  ws2812fx.service();
 
   delay(1000);
   bno.setExtCrystalUse(true);
@@ -218,5 +220,5 @@ void loop(void)
     batteryTimer.reset();
   }
 
-  delay(20);
+  ws2812fx.service();
 }
