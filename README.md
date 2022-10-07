@@ -1,6 +1,5 @@
 # Feather Star Pointer
 
-:warning: This is still very experimental :warning:
 
 The goal of this project is to be a  simple star pointing system for push-to telescopes, using the [SkySafari Pro](https://skysafariastronomy.com/skysafari-7-professional-astronomy-telescope-control-software-for-android.html) application on your smartphone.
 
@@ -11,6 +10,8 @@ The goal of this project is to be a  simple star pointing system for push-to tel
 - [Lithium Ion Polymer Battery](https://www.adafruit.com/product/3898)
 - 3D printed case and holder (you will find [ready to print STL](https://github.com/jromang/featherstarpointer/tree/main/stl) files in this repo)
 - A smartphone (Android/IOS) with the [SkySafari Pro](https://skysafariastronomy.com/skysafari-7-professional-astronomy-telescope-control-software-for-android.html) application
+- Optional [Jack JST PH 2.0/2.0mm Male/Female](https://fr.aliexpress.com/item/1005002657347265.html?spm=a2g0o.order_list.0.0.21ef5e5bcTvBVH)
+- Optional [Self locking switch](https://fr.aliexpress.com/item/4000164264475.html?spm=a2g0o.order_list.0.0.6cba5e5b0LTYn6)
 
 ### How to build
 - There is not soldering involved, just connect the Featherboard, the sensor, and the battery with the cable connectors
