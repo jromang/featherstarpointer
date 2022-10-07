@@ -18,8 +18,9 @@ The goal of this project is to be a  simple star pointing system for push-to tel
 - You have to glue the 3D printed base to the 3d printed holder
 
 ### How to use
-- Follow the [calibration procedure](https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor/device-calibration) at startup : the white LED will turn green when the calibration is finished.
+- Follow the [calibration procedure](https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor/device-calibration) at startup : the white LED will turn red when the calibration is finished.
 - Add the FSP as a 'basic encoder system' in skysafari, choose 'push-to  Alt-az', and connect using bluetooth. Finally set the encoder settings to +8192 (both fields).
+- The red LED will start to blink when the battery is low.
 - Enjoy !
 
 ### Pictures
