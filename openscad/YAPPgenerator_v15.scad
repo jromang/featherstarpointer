@@ -56,7 +56,7 @@ lidPlaneThickness   = 2.0;
 //--                     + baseWallHeight + lidWallHeight
 //-- space between pcb and lidPlane :=
 //--      (bottonWallHeight+lidWallHeight) - (standoffHeight+pcbThickness)
-baseWallHeight      = 12;
+baseWallHeight      = 16;
 lidWallHeight       = 5;
 
 //-- ridge where base and lid off box can overlap
@@ -197,6 +197,7 @@ cutoutsLid  =   [
 // (5) = { yappRectangle | yappCircle }
 // (6) = { yappCenter }
 cutoutsBase =   [
+                    [9,  9 , 13.2, 4, 20, yappCircle]
              //       [30, 0, 10, 24, yappRectangle]
              //     , [pcbLength/2, pcbWidth/2, 12, 4, yappCircle]
              //     , [pcbLength-8, 25, 10, 14, yappRectangle, yappCenter]
@@ -321,7 +322,7 @@ snapJoins   =     [ [2,               5, yappLeft, yappRight, yappSymmetric]
 // (6) = size
 // (7) = "label text"
 labelsPlane =   [
-                      [5, 5, 0, 1, "lid", "Liberation Mono:style=bold", 5, "^" ]
+                      //[5, 5, 0, 1, "lid", "Liberation Mono:style=bold", 5, "^" ]
                 ];
 
 
