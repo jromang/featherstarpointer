@@ -1,5 +1,6 @@
 # Feather Star Pointer
 
+:warning: **Azimuth accuracy is based on a magnetometer : accuracy is underwhelming**
 
 The goal of this project is to be a  simple star pointing system for push-to telescopes, using the [SkySafari Pro](https://skysafariastronomy.com/skysafari-7-professional-astronomy-telescope-control-software-for-android.html) application on your smartphone.
 
